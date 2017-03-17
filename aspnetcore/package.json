@@ -1,0 +1,24 @@
+{
+  "name": "aspnetcore",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "alsatian \"./reactApp/*.test.js\"",
+    "test-watch": "nodemon --watch \"./**/*.ts\" yarn test"
+  },
+  "devDependencies": {
+    "alsatian": "^1.3.0",
+    "chai": "^3.5.0",
+    "nodemon": "^1.11.0",
+    "ts-loader": "^2.0.1",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "d3": "^4.7.3",
+    "react": "^15.4.2"
+  }
+}

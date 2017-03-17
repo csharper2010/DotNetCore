@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "noImplicitAny": true,
+        "noImplicitUseStrict": false,
+        "experimentalDecorators": true,
+        "sourceMap": true
+    },
+    "exclude": [
+        "./wwwroot/**",
+        "./node_modules/**",
+        "./bin/**",
+        "./obj/**"
+    ]
+}

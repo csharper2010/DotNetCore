@@ -1,5 +1,7 @@
 // Platzieren Sie Ihre Einstellungen in dieser Datei, um Standard- und Benutzereinstellungen zu überschreiben.
 {
+    "typescript.check.tscVersion": false,
+    "typescript.tsdk": "./node_modules/typescript/lib",
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -7,8 +9,9 @@
         "**/.DS_Store": true,
         "**/bin/**": true,
         "**/obj/**": true,
-        "**/*.js": { "when": "$(basename).ts" },
-        "**/*.js.map": { "when": "$(basename)" }
+        "**/*.js": {"when": "$(basename).ts"},
+        "**/*?.js": {"when": "$(basename).tsx"},
+        "**/*.js.map": {"when": "$(basename)"}
     },
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 1000

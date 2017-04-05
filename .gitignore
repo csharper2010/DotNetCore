@@ -1,3 +1,23 @@
-node_modules
+# Binaries
 bin
 obj
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Node Modules
+node_modules/
+
+# JS and JS.MAP
+**/*.js
+**/*.js.map
+**/*.test.js
+**/*.test.js.map
+
+# Specific
+/aspnetcore/wwwroot/index.html
+
+# config.js in root folder
+!/*/*.js

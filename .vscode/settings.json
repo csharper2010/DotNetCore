@@ -5,8 +5,8 @@
         "**/.svn": true,
         "**/.hg": true,
         "**/.DS_Store": true,
-        "./**/bin/**": true,
-        "./**/obj/**": true,
+        "**/bin/**": true,
+        "**/obj/**": true,
         "**/*.js": { "when": "$(basename).ts" },
         "**/*.js.map": { "when": "$(basename)" }
     },

@@ -1,3 +1,4 @@
 export interface HelloWorldState {
-    data: Array<string>,
+    data: Array<string>;
+    lastFetched: Date;
 }

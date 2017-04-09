@@ -15,7 +15,7 @@ module.exports = {
         // 'vendor': './angularApp/vendor.ts',
         // 'polyfills': './angularApp/polyfills.ts',
         // 'app': './angularApp/main-aot.ts' // AoT compilation
-        'reactApp': './reactApp/main.tsx'
+        'reactApp': './reactApp/HelloWorldApp.tsx'
     },
 
     output: {

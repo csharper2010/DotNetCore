@@ -16,7 +16,7 @@ module.exports = {
         hints: false
     },
     entry: {
-        'reactApp': './reactApp/main.tsx'
+        'reactApp': './reactApp/HelloWorldApp.tsx'
     },
 
     output: {

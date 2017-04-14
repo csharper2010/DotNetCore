@@ -2,6 +2,7 @@ var path = require('path');
 
 module.exports = {
     packageSort: function (packages) {
+        console.log("TEST %O", packages);
         // packages = ['polyfills', 'vendor', 'app']
         var len = packages.length - 1;
         var first = packages[0];

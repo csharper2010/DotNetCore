@@ -16,18 +16,24 @@ module.exports = {
         hints: false
     },
     entry: {
-        'reactApp': './reactApp/HelloWorldApp.tsx'
+        'polyfills' : './polyfills/polyfills.ts',
+        'reactApp': [
+            'react-hot-loader/patch',
+            './reactApp/HelloWorldApp.tsx',
+        ]
     },
 
     output: {
         path: __dirname + '/wwwroot/',
         filename: 'dist/[name].bundle.js',
         chunkFilename: 'dist/[id].chunk.js',
-        publicPath: '/'
+        publicPath: '/',
+        hotUpdateChunkFilename: 'hot/hot-update.js',
+        hotUpdateMainFilename: 'hot/hot-update.json'
     },
 
     externals: {
-        //'x': 'x'
+        //'polyfills' : '
     },
 
     resolve: {
@@ -51,10 +57,12 @@ module.exports = {
             {
                 test: /\.(ts|tsx)$/,
                 loaders: [
+                    'react-hot-loader/webpack',
                     'awesome-typescript-loader',
                     'source-map-loader',
                     'tslint-loader'
-                ]
+                ],
+                exclude: path.resolve(__dirname, 'node_modules')
             },
             {
                 test: /\.(png|jpg|gif|woff|woff2|ttf|svg|eot)$/,
@@ -85,8 +93,7 @@ module.exports = {
         net: 'mock'
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ name: ['app', 'polyfills'] }),
-
+        new webpack.optimize.CommonsChunkPlugin({ names: ['polyfills'] }),
         new CleanWebpackPlugin(
             [
                 './wwwroot/dist',
@@ -97,8 +104,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             inject: 'body',
-            template: 'reactApp/index.html'
+            template: 'reactApp/index.html',
         }),
+
+        new webpack.NamedModulesPlugin(),
+
+        //new webpack.HotModuleReplacementPlugin(),
 
         // new CopyWebpackPlugin([
         //     { from: './angularApp/images/*.*', to: 'assets/', flatten: true }

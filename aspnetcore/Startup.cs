@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -34,6 +35,15 @@ namespace aspnetcore
             loggerFactory.AddDebug();
 
             app.UseMvc();
+
+            if (env.IsDevelopment()) {
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+                    HotModuleReplacement = true,
+                    ReactHotModuleReplacement = true,
+                    ConfigFile = @"./webpack.dev.js",
+                });
+            }
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
         }

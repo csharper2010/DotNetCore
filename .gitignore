@@ -16,6 +16,9 @@ node_modules/
 **/*.test.js
 **/*.test.js.map
 
+**/wwwroot/dist
+**/wwwroot/hot
+
 # Specific
 /aspnetcore/wwwroot/index.html
 

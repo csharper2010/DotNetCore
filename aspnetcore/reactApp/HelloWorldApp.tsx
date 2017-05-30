@@ -5,12 +5,14 @@ import {HelloWorldState} from './HelloWorldState';
 
 //import {store} from './HelloWorldStore';
 import { polyfill } from 'es6-promise';
-polyfill(); 
+polyfill();
 import 'whatwg-fetch';
 
 export class HelloWorld extends React.Component<any, HelloWorldState> {
     constructor() {
         super();
+
+        this.reload = this.reload.bind(this);
     }
 
     componentDidMount() {
@@ -35,6 +37,10 @@ export class HelloWorld extends React.Component<any, HelloWorldState> {
             }));
     }
 
+    reload(e: React.MouseEvent<HTMLButtonElement>) {
+        this.fetchData();
+    }
+
     public render() {
         let state = this.state;
         return (
@@ -43,6 +49,7 @@ export class HelloWorld extends React.Component<any, HelloWorldState> {
                 <ul>
                 { state && state.data.map((s, index) => <li key={index}>{s}</li>) }
                 </ul>
+                <button onClick={this.reload}>Reload</button>
             </div>
         );
     }

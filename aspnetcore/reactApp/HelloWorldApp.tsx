@@ -7,18 +7,22 @@ import {AppContainer} from 'react-hot-loader';
 
 let x = document.getElementById('react-app');
 
-const render = (Component) => {
-  ReactDOM.render(
-    <AppContainer>
-        <Component />
-    </AppContainer>, x);
+let render = (Component) => {
+  ReactDOM.render(<Component />, x);
 };
 
-render(HelloWorldComponent);
-
 if (module.hot) {
+    render = (Component) => {
+    ReactDOM.render(
+        <AppContainer>
+            <Component />
+        </AppContainer>, x);
+    };
+
     module.hot.accept('./HelloWorldComponent', () => {
         const NextHelloWorldComponent = require('./HelloWorldComponent').default;
         render(NextHelloWorldComponent);
     });
 }
+
+render(HelloWorldComponent);

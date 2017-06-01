@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "test": "alsatian \"./reactApp/*.test.js\"",
-    "test-watch": "nodemon --watch \"./**/*.ts\" yarn test",
+    "test-watch": "concurrently \"node ../node_modules/typescript/lib/tsc.js --watch\" \"nodemon --watch . --ext js --delay 2 --on-change-only ./node_modules/alsatian/cli/alsatian-cli.js ./reactApp/*.test.js\"",
     "start": "cross-env ASPNETCORE_ENVIRONMENT=Development dotnet run",
     "start-webpack-dev-server": "concurrently \"webpack-dev-server --hot --inline --port 8080\" \"dotnet run\" ",
     "webpack-dev": "cross-env NODE_ENV=development webpack",
@@ -26,6 +26,7 @@
     "aspnet-webpack-react": "^1.0.5",
     "awesome-typescript-loader": "^3.1.2",
     "clean-webpack-plugin": "^0.1.16",
+    "concurrently": "^3.4.0",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^4.0.0",
     "css-loader": "^0.28.0",
@@ -49,6 +50,7 @@
     "eventsource": "^0.2.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "rxjs": "^5.3.0",
     "stylus": "^0.54.5",
     "whatwg-fetch": "^2.0.3"
   }

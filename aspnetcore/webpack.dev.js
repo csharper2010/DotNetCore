@@ -20,7 +20,11 @@ module.exports = {
         'reactApp': [
             'react-hot-loader/patch',
             './reactApp/HelloWorldApp.tsx',
-        ]
+        ],
+        'kundeSucheApp': [
+            'react-hot-loader/patch',
+            './reactApp/KundeSucheApp.tsx',
+        ],
     },
 
     output: {
@@ -57,7 +61,7 @@ module.exports = {
             {
                 test: /\.(ts|tsx)$/,
                 loaders: [
-                    'react-hot-loader/webpack',
+                    //'react-hot-loader/webpack',
                     'awesome-typescript-loader',
                     'source-map-loader',
                     'tslint-loader'
@@ -93,7 +97,6 @@ module.exports = {
         net: 'mock'
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ names: ['polyfills'] }),
         new CleanWebpackPlugin(
             [
                 './wwwroot/dist',
@@ -101,10 +104,20 @@ module.exports = {
             ]
         ),
 
+        new webpack.optimize.CommonsChunkPlugin({ names: ['polyfills'] }),
+
         new HtmlWebpackPlugin({
             filename: 'index.html',
             inject: 'body',
             template: 'reactApp/index.html',
+            chunks: ['polyfills', 'reactApp']
+        }),
+
+        new HtmlWebpackPlugin({
+            filename: 'kundeSuche.html',
+            inject: 'body',
+            template: 'reactApp/kundeSuche.html',
+            chunks: ['polyfills', 'kundeSucheApp']
         }),
 
         new webpack.NamedModulesPlugin(),

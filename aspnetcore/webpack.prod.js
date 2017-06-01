@@ -13,13 +13,19 @@ module.exports = {
 
     entry: {
         // 'vendor': './angularApp/vendor.ts',
-        // 'polyfills': './angularApp/polyfills.ts',
+        //'polyfills': './angularApp/polyfills.ts',
         // 'app': './angularApp/main-aot.ts' // AoT compilation
-        'reactApp': './reactApp/HelloWorldApp.tsx'
+        'polyfills' : './polyfills/polyfills.ts',
+        'reactApp': [
+            './reactApp/HelloWorldApp.tsx',
+        ],
+        'kundeSucheApp': [
+            './reactApp/KundeSucheApp.tsx',
+        ],
     },
 
     output: {
-        path: './wwwroot/',
+        path: __dirname + '/wwwroot/',
         filename: 'dist/[name].[hash].bundle.js',
         chunkFilename: 'dist/[id].[hash].chunk.js',
         publicPath: '/'
@@ -45,7 +51,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
+                test: /\.(ts|tsx)$/,
                 loaders: [
                     'awesome-typescript-loader',
                 ]
@@ -82,7 +88,11 @@ module.exports = {
                 './wwwroot/assets'
             ]
         ),
+
+        new webpack.optimize.CommonsChunkPlugin({ names: ['polyfills'] }),
+
         new webpack.NoEmitOnErrorsPlugin(),
+
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
@@ -92,15 +102,19 @@ module.exports = {
             },
             sourceMap: false
         }),
-        new webpack.optimize.CommonsChunkPlugin(
-            {
-                name: ['vendor', 'polyfills']
-            }),
 
         new HtmlWebpackPlugin({
             filename: 'index.html',
             inject: 'body',
-            template: 'reactApp/index.html'
+            template: 'reactApp/index.html',
+            chunks: ['polyfills', 'reactApp']
+        }),
+
+        new HtmlWebpackPlugin({
+            filename: 'kundeSuche.html',
+            inject: 'body',
+            template: 'reactApp/kundeSuche.html',
+            chunks: ['polyfills', 'kundeSucheApp']
         }),
 
         // new CopyWebpackPlugin([

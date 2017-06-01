@@ -33,7 +33,7 @@ export default class HelloWorld extends React.Component<any, HelloWorldState> {
         let state = this.state;
         return (
             <div>
-                Hello World9 {state && state.lastFetched.toLocaleString()}
+                Hello WorldComponent {state && state.lastFetched.toLocaleString()}
                 <button onClick={e => this.fetchData()}>Fetch</button>
                 <ul>
                 { state && state.data.map((s, index) => <li key={index}>a {s}</li>) }
